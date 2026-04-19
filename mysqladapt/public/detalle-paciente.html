@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediTrack - Detalle del Paciente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/detalle-paciente.css" />
+</head>
+<body>
+  <div class="detail-layout">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="logo-box">
+          <div class="logo-icon">
+            <i class='bx bx-plus-medical'></i>
+            <span class="logo-dot"></span>
+          </div>
+          <div class="logo-text">
+            <h1>MediTrack</h1>
+            <p>Medical System</p>
+          </div>
+        </div>
+
+        <nav class="menu">
+          <a href="/dashboard" class="menu-item">
+            <i class='bx bx-grid-alt'></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="/pacientes" class="menu-item active">
+            <i class='bx bx-user'></i>
+            <span>Pacientes</span>
+          </a>
+
+          <a href="/nuevo-paciente" class="menu-item">
+            <i class='bx bx-user-plus'></i>
+            <span>Nuevo Paciente</span>
+          </a>
+
+          <a href="/logout" class="menu-item">
+            <i class='bx bx-log-out'></i>
+            <span>Cerrar sesión</span>
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="page-title">Detalle del Paciente</div>
+      </header>
+
+      <section class="patient-detail-section">
+        <div class="patient-header-card">
+          <div class="patient-main">
+            <div class="patient-avatar" id="patientAvatar">NP</div>
+
+            <div class="patient-title-info">
+              <h2 id="patientName">Paciente</h2>
+              <div class="patient-meta">
+                <span>ID: <strong id="patientId">No registrado</strong></span>
+                <span>Última visita: <strong id="patientLastVisit">Today</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="patient-tabs">
+            <button class="tab active">
+              <i class='bx bx-file'></i>
+              <span>Datos del Paciente</span>
+            </button>
+            <a id="editPatientLink" href="#" class="tab">
+              <i class='bx bx-pencil'></i>
+              <span>Editar</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="left-column">
+            <div class="section-card">
+              <div class="section-header">
+                <h3><i class='bx bx-id-card'></i> Información General</h3>
+                <a href="/pacientes"><i class='bx bx-arrow-back'></i> Volver</a>
+              </div>
+
+              <div class="info-grid">
+                <div class="info-item">
+                  <label>Nombres</label>
+                  <p id="infoNombres">No registrado</p>
+                </div>
+
+                <div class="info-item">
+                  <label>Apellidos</label>
+                  <p id="infoApellidos">No registrado</p>
+                </div>
+
+                <div class="info-item">
+                  <label>Identificación</label>
+                  <p id="infoIdentificacion">No registrado</p>
+                </div>
+
+                <div class="info-item">
+                  <label>Fecha de nacimiento</label>
+                  <p id="infoFechaNacimiento">No registrada</p>
+                </div>
+
+                <div class="info-item">
+                  <label>Género</label>
+                  <p id="infoGenero">No registrado</p>
+                </div>
+
+                <div class="info-item">
+                  <label>Tipo de sangre</label>
+                  <p id="infoSangre">No registrado</p>
+                </div>
+
+                <div class="info-item">
+                  <label>Teléfono</label>
+                  <p id="infoTelefono">No registrado</p>
+                </div>
+
+                <div class="info-item">
+                  <label>Correo</label>
+                  <p id="infoCorreo">No registrado</p>
+                </div>
+
+                <div class="info-item full">
+                  <label>Dirección</label>
+                  <p id="infoDireccion">No registrada</p>
+                </div>
+
+                <div class="info-item">
+                  <label>Insurance</label>
+                  <p id="infoEps">No registrada</p>
+                </div>
+
+                <div class="info-item">
+                  <label>Contacto de emergencia</label>
+                  <p id="infoContactoEmergencia">No registrado</p>
+                </div>
+
+                <div class="info-item">
+                  <label>Teléfono de emergencia</label>
+                  <p id="infoTelefonoEmergencia">No registrado</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-title-row">
+              <h3><i class='bx bx-notepad'></i> Historial Médico</h3>
+            </div>
+
+            <div class="history-card warning">
+              <div class="history-icon">
+                <i class='bx bx-error-alt'></i>
+              </div>
+              <div class="history-content">
+                <div class="history-top">
+                  <h4>Alergias</h4>
+                  <span>Actualizado: Today</span>
+                </div>
+                <p id="infoAlergias">No registrado</p>
+              </div>
+            </div>
+
+            <div class="history-card blue">
+              <div class="history-icon">
+                <i class='bx bx-pulse'></i>
+              </div>
+              <div class="history-content">
+                <div class="history-top">
+                  <h4>Medical History</h4>
+                  <span>Actualizado: Today</span>
+                </div>
+                <p id="infoAntecedentes">No registrado</p>
+              </div>
+            </div>
+
+            <div class="history-card green">
+              <div class="history-icon">
+                <i class='bx bx-note'></i>
+              </div>
+              <div class="history-content">
+                <div class="history-top">
+                  <h4>Observaciones</h4>
+                  <span>Actualizado: Today</span>
+                </div>
+                <p id="infoObservaciones">No registrado</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="right-column">
+            <div class="summary-card">
+              <h4><i class='bx bx-user-circle'></i> Resumen del Paciente</h4>
+
+              <div class="summary-row">
+                <span>Nombre completo</span>
+                <strong id="summaryName">No registrado</strong>
+              </div>
+
+              <div class="summary-row">
+                <span>Documento</span>
+                <strong id="summaryId">No registrado</strong>
+              </div>
+
+              <div class="summary-row">
+                <span>Fecha de nacimiento</span>
+                <strong id="summaryBirth">No registrada</strong>
+              </div>
+
+              <div class="summary-row">
+                <span>Género</span>
+                <strong id="summaryGender">No registrado</strong>
+              </div>
+
+              <div class="summary-row">
+                <span>Tipo de sangre</span>
+                <strong id="summaryBlood">No registrado</strong>
+              </div>
+
+              <div class="summary-row">
+                <span>Correo</span>
+                <strong id="summaryEmail">No registrado</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/js/patient-detail.js"></script>
+</body>
+</html>

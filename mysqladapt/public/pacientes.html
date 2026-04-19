@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediTrack - Pacientes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/pacientes.css" />
+</head>
+<body>
+  <div class="patients-layout">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="logo-box">
+          <div class="logo-icon">
+            <i class='bx bx-plus-medical'></i>
+            <span class="logo-dot"></span>
+          </div>
+          <div class="logo-text">
+            <h1>MediTrack</h1>
+            <p>Medical System</p>
+          </div>
+        </div>
+
+        <nav class="menu">
+          <a href="/dashboard" class="menu-item">
+            <i class='bx bx-grid-alt'></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="/pacientes" class="menu-item active">
+            <i class='bx bx-user'></i>
+            <span>Pacientes</span>
+          </a>
+
+          <a href="/nuevo-paciente" class="menu-item">
+            <i class='bx bx-user-plus'></i>
+            <span>Nuevo Paciente</span>
+          </a>
+
+          <a href="/logout" class="menu-item">
+            <i class='bx bx-log-out'></i>
+            <span>Cerrar sesión</span>
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <h2>Pacientes</h2>
+
+        <div class="topbar-right">
+          <button class="top-icon" title="Notifications" aria-label="Notifications">
+            <i class='bx bx-bell'></i>
+          </button>
+
+          <div class="doctor-box">
+            <div class="doctor-info">
+              <h4>Dr. Ricardo Silva</h4>
+              <p>General Surgery</p>
+            </div>
+            <div class="doctor-avatar">RS</div>
+          </div>
+        </div>
+      </header>
+
+      <section class="patients-section">
+        <div class="patients-toolbar">
+          <div class="search-box">
+            <i class='bx bx-search'></i>
+            <input type="text" id="patientSearch" placeholder="Buscar por nombre, ID o correo..." />
+          </div>
+
+          <a href="/nuevo-paciente" class="add-btn">
+            <i class='bx bx-user-plus'></i>
+            <span>Añadir Paciente</span>
+          </a>
+        </div>
+
+        <div class="table-card">
+          <div class="table-header">
+            <span>PACIENTE</span>
+            <span>IDENTIFICACIÓN</span>
+            <span>FECHA DE NACIMIENTO</span>
+            <span>ACCIONES</span>
+          </div>
+
+          <div id="patientsTableBody"></div>
+
+          <div class="table-footer">
+            <p id="patientsCounter">Mostrando 0 de 0 pacientes</p>
+            <div class="pagination" id="patientsPagination"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/js/patients.js"></script>
+</body>
+</html>

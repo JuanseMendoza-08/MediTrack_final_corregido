@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediTrack - Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div>
+        <div class="logo-box">
+          <div class="logo-icon">
+            <i class='bx bx-plus-medical'></i>
+            <span class="logo-dot"></span>
+          </div>
+          <div class="logo-text">
+            <h1>MediTrack</h1>
+            <p>Medical System</p>
+          </div>
+        </div>
+
+        <nav class="menu">
+          <a href="/dashboard" class="menu-item active">
+            <i class='bx bx-grid-alt'></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="/pacientes" class="menu-item">
+            <i class='bx bx-user'></i>
+            <span>Pacientes</span>
+          </a>
+
+          <a href="/nuevo-paciente" class="menu-item">
+            <i class='bx bx-user-plus'></i>
+            <span>Nuevo Paciente</span>
+          </a>
+
+          <a href="/logout" class="menu-item">
+            <i class='bx bx-log-out'></i>
+            <span>Cerrar sesión</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doctor-avatar">RS</div>
+        <div>
+          <h4>Dr. Ricardo Silva</h4>
+          <p>General Surgery</p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="search-box">
+          <i class='bx bx-search'></i>
+          <input type="text" placeholder="Buscar pacientes o registros..." />
+        </div>
+
+        <div class="topbar-right">
+          <button class="top-icon" title="Notifications" aria-label="Notifications">
+            <i class='bx bx-bell'></i>
+          </button>
+
+          <div class="date-box">
+            <span>Medical Dashboard</span>
+            <i class='bx bx-calendar'></i>
+          </div>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue">
+            <i class='bx bx-group'></i>
+          </div>
+          <div class="stat-info">
+            <p>Pacientes Activos</p>
+            <h3 id="activePatientsCount">0</h3>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon green">
+            <i class='bx bx-user-plus'></i>
+          </div>
+          <div class="stat-info">
+            <p>Nuevos Hoy</p>
+            <h3 id="newTodayCount">0</h3>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon orange">
+            <i class='bx bx-envelope'></i>
+          </div>
+          <div class="stat-info">
+            <p>Con Correo</p>
+            <h3 id="withEmailCount">0</h3>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon red">
+            <i class='bx bx-error-circle'></i>
+          </div>
+          <div class="stat-info">
+            <p>Con Alergias</p>
+            <h3 id="withAllergiesCount">0</h3>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <div class="panel patients-panel">
+          <div class="panel-header">
+            <h2>Pacientes Recientes</h2>
+            <a href="/pacientes">Ver todos</a>
+          </div>
+
+          <div class="table-header">
+            <span>PACIENTE</span>
+            <span>ESTADO</span>
+            <span>ACCIÓN</span>
+          </div>
+
+          <div id="recentPatientsList"></div>
+        </div>
+
+        <div class="panel consult-panel">
+          <div class="panel-header">
+            <h2>Último Paciente Registrado</h2>
+          </div>
+
+          <div id="lastPatientBox" class="dashboard-empty-small">
+            <h3>No hay pacientes registrados</h3>
+            <p>Registra un paciente y aquí verás un resumen rápido.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
