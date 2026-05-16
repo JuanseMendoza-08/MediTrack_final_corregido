@@ -1,16 +1,29 @@
 const patientDao = require('../dao/patient.dao');
 
-const getAll = async (req, res) => {
-  try {
-    const patients = await patientDao.getAllPatients();
-    res.json(patients);
-  } catch (err) {
-    console.error('GET ALL PATIENTS ERROR:', err);
-    res.status(500).json({ error: err.message });
+const requiredFields = ['firstName', 'lastName', 'identification', 'birthDate', 'gender'];
+
+const validatePatientPayload = (payload = {}) => {
+  for (const field of requiredFields) {
+    const value = payload[field];
+
+    if (typeof value !== 'string' || value.trim() === '') {
+      const error = new Error(`Missing required field: ${field}`);
+      error.statusCode = 400;
+      throw error;
+    }
   }
 };
 
-const getById = async (req, res) => {
+const getAll = async (req, res, next) => {
+  try {
+    const patients = await patientDao.getAllPatients();
+    return res.json(patients);
+  } catch (err) {
+    return next(err);
+  }
+};
+
+const getById = async (req, res, next) => {
   try {
     const patient = await patientDao.getPatientById(req.params.id);
 
@@ -18,52 +31,26 @@ const getById = async (req, res) => {
       return res.status(404).json({ error: 'Patient not found' });
     }
 
-    res.json(patient);
+    return res.json(patient);
   } catch (err) {
-    console.error('GET PATIENT BY ID ERROR:', err);
-    res.status(500).json({ error: err.message });
+    return next(err);
   }
 };
 
-const create = async (req, res) => {
+const create = async (req, res, next) => {
   try {
-    console.log('BODY RECIBIDO:', req.body);
-
-    const {
-      firstName,
-      lastName,
-      identification,
-      birthDate,
-      gender
-    } = req.body;
-
-    if (!firstName || !lastName || !identification || !birthDate || !gender) {
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
+    validatePatientPayload(req.body);
 
     const patient = await patientDao.createPatient(req.body);
-    console.log('PACIENTE GUARDADO:', patient);
-
-    res.status(201).json(patient);
+    return res.status(201).json(patient);
   } catch (err) {
-    console.error('CREATE PATIENT ERROR:', err);
-    res.status(500).json({ error: err.message });
+    return next(err);
   }
 };
 
-const update = async (req, res) => {
+const update = async (req, res, next) => {
   try {
-    const {
-      firstName,
-      lastName,
-      identification,
-      birthDate,
-      gender
-    } = req.body;
-
-    if (!firstName || !lastName || !identification || !birthDate || !gender) {
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
+    validatePatientPayload(req.body);
 
     const patient = await patientDao.updatePatient(req.params.id, req.body);
 
@@ -71,14 +58,13 @@ const update = async (req, res) => {
       return res.status(404).json({ error: 'Patient not found' });
     }
 
-    res.json(patient);
+    return res.json(patient);
   } catch (err) {
-    console.error('UPDATE PATIENT ERROR:', err);
-    res.status(500).json({ error: err.message });
+    return next(err);
   }
 };
 
-const remove = async (req, res) => {
+const remove = async (req, res, next) => {
   try {
     const deleted = await patientDao.deletePatient(req.params.id);
 
@@ -86,10 +72,9 @@ const remove = async (req, res) => {
       return res.status(404).json({ error: 'Patient not found' });
     }
 
-    res.json({ message: 'Patient deleted successfully' });
+    return res.json({ message: 'Patient deleted successfully' });
   } catch (err) {
-    console.error('DELETE PATIENT ERROR:', err);
-    res.status(500).json({ error: err.message });
+    return next(err);
   }
 };
 

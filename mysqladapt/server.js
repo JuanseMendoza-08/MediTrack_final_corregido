@@ -1,9 +1,10 @@
 const express = require('express');
 const path = require('path');
 const patientRoutes = require('./routes/patient.routes');
+const db = require('./services/mysql.service');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -44,6 +45,36 @@ app.get('/detalle-paciente.html', (req, res) => {
   res.redirect(`/detalle-paciente${query}`);
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+app.use((req, res) => {
+  res.status(404).json({ error: 'Resource not found' });
 });
+
+app.use((err, req, res, next) => {
+  if (res.headersSent) {
+    return next(err);
+  }
+
+  const statusCode = Number(err.statusCode) || 500;
+
+  if (statusCode >= 500) {
+    console.error('UNHANDLED ERROR:', err);
+  }
+
+  return res.status(statusCode).json({
+    error: err.message || 'Internal Server Error'
+  });
+});
+
+const start = async () => {
+  try {
+    await db.verifyConnection();
+    app.listen(PORT, () => {
+      console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error('No se pudo conectar a MySQL. Revisa variables DB_* y estado del servidor.', error.message);
+    process.exit(1);
+  }
+};
+
+start();
